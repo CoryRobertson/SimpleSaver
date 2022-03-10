@@ -1,12 +1,11 @@
 package com.github.coryrobertson.simplesaver;
 
 import java.io.*;
-import java.lang.reflect.Array;
 
 public class Save<t>
 {
     t[] data;
-    char seperator = ',';
+    char separator = ',';
     public Save(t[] data)
     {
         this.data = data;
@@ -82,7 +81,7 @@ public class Save<t>
         int count = 0;
         for (int i = 0; i < str.length(); i++)
         {
-            if (str.charAt(i) == seperator)
+            if (str.charAt(i) == separator)
             {
                 count++;
             }
@@ -94,15 +93,15 @@ public class Save<t>
     @Override
     public String toString()
     {
-        String str = "";
+        StringBuilder str = new StringBuilder();
         for (int i = 0; i < this.data.length; i++)
         {
             if(i == this.data.length - 1)
-                str += this.data[i];
+                str.append(this.data[i]);
             else
-                str += this.data[i] + ",";
+                str.append(this.data[i]).append(",");
 
         }
-        return str;
+        return str.toString();
     }
 }

@@ -7,7 +7,7 @@ import java.io.File;
 
 public class SaverTest
 {
-    static String[] dataToTest = {"word1", "number1", "g", " ", "616594984984"};
+    static String[] dataToTest = {"word1", "number1", "g", " ", "61"};
     static final String TESTFILENAME = "./test.sav";
     @Test
     @Order(1)
