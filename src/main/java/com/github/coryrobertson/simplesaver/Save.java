@@ -2,19 +2,32 @@ package com.github.coryrobertson.simplesaver;
 
 import java.io.*;
 
+/**
+ * A save file which can be given an array to save, or load an array from a file
+ * @param <t> the type of data to save, at the moment is always cast to string, might change later
+ */
 public class Save<t>
 {
     t[] data;
     char separator = ',';
+
+    /**
+     *
+     * @param data an array of data, at the moment is always cast to string
+     */
     public Save(t[] data)
     {
         this.data = data;
     }
 
+    /**
+     * An empty constructor used for loading the data into this object
+     */
     public Save() {}
 
     /**
-     *
+     * Writes the data inside this object to the file given as a parameter
+     * @param file a file object to save to
      * @return true if save successful
      */
     public boolean writeToSaveFile(File file)
@@ -43,7 +56,11 @@ public class Save<t>
         return true;
     }
 
-
+    /**
+     *
+     * @param file file object to read from
+     * @return a save object
+     */
     public Save<t> readFromSaveFile(File file)
     {
 

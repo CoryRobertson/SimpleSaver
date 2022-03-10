@@ -1,4 +1,5 @@
 import com.github.coryrobertson.simplesaver.Save;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,7 @@ import java.io.File;
 
 public class SaverTest
 {
-    static String[] dataToTest = {"word1", "number1", "g", " ", "61"};
+    static String[] dataToTest = {"word1", "number1", "g", " ", "61idfkukhdifug"};
     static final String TESTFILENAME = "./test.sav";
     @Test
     @Order(1)
