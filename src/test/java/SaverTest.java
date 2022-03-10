@@ -10,11 +10,12 @@ public class SaverTest
 {
     static String[] dataToTest = {"word1", "number1", "g", " ", "61idfkukhdifug"};
     static final String TESTFILENAME = "./test.sav";
+
     @Test
     @Order(1)
     void SaveTest()
     {
-        Save<String> save = new Save<>(dataToTest);
+        Save save = new Save(dataToTest);
         Assertions.assertTrue(save.writeToSaveFile(new File(TESTFILENAME)));
     }
 
@@ -22,9 +23,9 @@ public class SaverTest
     @Order(2)
     void LoadTest()
     {
-        Save<String> save = new Save<>();
-        save = save.readFromSaveFile(new File(TESTFILENAME));
-        String[] data = save.getData();
+        Save save = new Save();
+        String[] data = save.readFromSaveFile(new File(TESTFILENAME));
+
         for(int i = 0; i < dataToTest.length; i++)
         {
             Assertions.assertEquals(dataToTest[i], data[i]);

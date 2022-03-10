@@ -4,18 +4,17 @@ import java.io.*;
 
 /**
  * A save file which can be given an array to save, or load an array from a file
- * @param <t> the type of data to save, at the moment is always cast to string, might change later
  */
-public class Save<t>
+public class Save
 {
-    t[] data;
-    char separator = ',';
+    private String[] data;
+    private char separator = ',';
 
     /**
      *
-     * @param data an array of data, at the moment is always cast to string
+     * @param data an array of data
      */
-    public Save(t[] data)
+    public Save(String[] data)
     {
         this.data = data;
     }
@@ -61,7 +60,7 @@ public class Save<t>
      * @param file file object to read from
      * @return a save object
      */
-    public Save<t> readFromSaveFile(File file)
+    public String[] readFromSaveFile(File file)
     {
 
         FileReader fr;
@@ -78,19 +77,14 @@ public class Save<t>
         } catch (IOException e) {
             e.printStackTrace();
         }
-        int length = getCharCount(fileContents) + 1;
+        //int length = getCharCount(fileContents) + 1;
 
-        t[] data;
-
-        data = (t[]) fileContents.split(",");
-
-
-        return new Save<>(data);
+        return fileContents.split(",");
     }
 
     public String[] getData()
     {
-        return (String[]) this.data;
+        return this.data;
     }
 
     private int getCharCount(String str)
