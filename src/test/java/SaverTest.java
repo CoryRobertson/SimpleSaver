@@ -24,11 +24,13 @@ public class SaverTest
     void LoadTest()
     {
         Save save = new Save();
+
         String[] data = save.readFromSaveFile(new File(TESTFILENAME));
 
         for(int i = 0; i < dataToTest.length; i++)
         {
             Assertions.assertEquals(dataToTest[i], data[i]);
+
         }
     }
 
