@@ -1,4 +1,4 @@
-import com.github.coryrobertson.simplesaver.Save;
+package com.github.coryrobertson.simplesaver;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
@@ -15,17 +15,17 @@ public class SaverTest
     @Order(1)
     void SaveTest()
     {
-        Save save = new Save(dataToTest);
-        Assertions.assertTrue(save.writeToSaveFile(new File(TESTFILENAME)));
+        SimpleSave simpleSave = new SimpleSave(dataToTest);
+        Assertions.assertTrue(simpleSave.writeToSaveFile(new File(TESTFILENAME)));
     }
 
     @Test
     @Order(2)
     void LoadTest()
     {
-        Save save = new Save();
+        SimpleSave simpleSave = new SimpleSave();
 
-        String[] data = save.readFromSaveFile(new File(TESTFILENAME));
+        String[] data = simpleSave.readFromSaveFile(new File(TESTFILENAME));
 
         for(int i = 0; i < dataToTest.length; i++)
         {

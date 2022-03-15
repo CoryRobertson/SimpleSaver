@@ -3,9 +3,9 @@ package com.github.coryrobertson.simplesaver;
 import java.io.*;
 
 /**
- * A save file which can be given an array to save, or load an array from a file
+ * A saving tool that lets you simply save a human readable string to a file
  */
-public class Save
+public class SimpleSave
 {
     private String[] data;
     private char separator = ',';
@@ -14,7 +14,7 @@ public class Save
      *
      * @param data an array of data
      */
-    public Save(String[] data)
+    public SimpleSave(String[] data)
     {
         this.data = data;
     }
@@ -22,7 +22,7 @@ public class Save
     /**
      * An empty constructor used for loading the data into this object
      */
-    public Save() {}
+    public SimpleSave() {}
 
     /**
      * Writes the data inside this object to the file given as a parameter

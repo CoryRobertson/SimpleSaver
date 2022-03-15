@@ -41,3 +41,7 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 /test.sav
+/save.ser
+/nums.ser
+/strings.ser
+/data.ser
