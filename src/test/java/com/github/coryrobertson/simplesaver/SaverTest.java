@@ -8,29 +8,40 @@ import java.io.File;
 
 public class SaverTest
 {
-    static String[] dataToTest = {"word1", "number1", "g", " ", "61idfkukhdifug"};
-    static final String TESTFILENAME = "./test.sav";
+    final String[] dataToTest = {"word1", "number1", "g", " ", "61idfkukhdifug"};
+    final String TESTFILENAME = "./test.sav";
+
 
     @Test
-    @Order(1)
-    void SaveTest()
-    {
-        SimpleSave simpleSave = new SimpleSave(dataToTest);
-        Assertions.assertTrue(simpleSave.writeToSaveFile(new File(TESTFILENAME)));
-    }
-
-    @Test
-    @Order(2)
     void LoadTest()
     {
-        SimpleSave simpleSave = new SimpleSave();
+        SimpleSave simpleSave1 = new SimpleSave(dataToTest);
+        Assertions.assertTrue(simpleSave1.writeToSaveFile(new File(TESTFILENAME)));
 
-        String[] data = simpleSave.readFromSaveFile(new File(TESTFILENAME));
+        SimpleSave simpleSave2 = new SimpleSave();
+
+        String[] data = simpleSave2.readFromSaveFile(new File(TESTFILENAME));
 
         for(int i = 0; i < dataToTest.length; i++)
         {
             Assertions.assertEquals(dataToTest[i], data[i]);
 
+        }
+    }
+
+    @Test
+    void READMETest()
+    {
+        String[] stringSave = new String[] {"123456789", "987654321"};
+        SimpleSave simpleSave = new SimpleSave(stringSave);
+        simpleSave.writeToSaveFile(new File("./simpleSave.sav"));
+
+        String[] data = simpleSave.readFromSaveFile(new File("./simpleSave.sav"));
+
+        //all above code goes into the readme
+        for(int i = 0; i < data.length; i++)
+        {
+            Assertions.assertEquals(data[i], stringSave[i]);
         }
     }
 

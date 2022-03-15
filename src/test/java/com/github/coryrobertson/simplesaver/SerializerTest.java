@@ -71,4 +71,21 @@ class SerializerTest {
             Assertions.assertFalse(Serializer.saveExists("nums.ser"));
 
     }
+
+    @Test
+    void READMETestUsage()
+    {
+        Double[] doubles = {1.1, 5.6};
+        Serializer.save(doubles, "./fileName.ser");
+
+        SerializableSave<Double> doubleSave = Serializer.loadSave("./fileName.ser");
+        assert doubleSave != null;
+        Double[] doubleData = doubleSave.getSaveData();
+
+        //all above code goes into the readme
+        for(int i = 0; i < doubleData.length; i++)
+        {
+            Assertions.assertEquals(doubles[i], doubleData[i]);
+        }
+    }
 }
