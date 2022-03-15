@@ -11,12 +11,12 @@ public class SerializableSave<T> implements Serializable
     private static final long serialVersionUID = 1L;
     private T[] data;
 
-    protected SerializableSave(T[] data)
+    public SerializableSave(T[] data)
     {
         this.data = data;
     }
 
-    protected T[] getSaveData()
+    public T[] getSaveData()
     {
         return this.data;
     }
