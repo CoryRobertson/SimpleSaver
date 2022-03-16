@@ -32,13 +32,19 @@ public class SimpleSave
     public boolean writeToSaveFile(File file)
     {
         FileWriter fw;
-        try {
+        try
+        {
             fw = new FileWriter(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-            return false;
-
         }
+        catch (FileNotFoundException e)
+            {
+                if (file.getParentFile().mkdirs())
+                {
+                    return writeToSaveFile(file);
+                }
+                else {return false;}
+            }
+        catch (IOException e) {return false;}
 
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter pw = new PrintWriter(bw);
@@ -67,25 +73,23 @@ public class SimpleSave
         try {
             fr = new FileReader(file);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
             return null;
         }
         BufferedReader br = new BufferedReader(fr);
-        String fileContents = "";
+        String fileContents;
         try {
             fileContents = br.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            return null;
         }
         //int length = getCharCount(fileContents) + 1;
 
         return fileContents.split(",");
     }
 
-    public String[] getData()
-    {
-        return this.data;
-    }
+    public String[] getData() {return this.data;}
 
     private int getCharCount(String str)
     {
@@ -99,6 +103,11 @@ public class SimpleSave
         }
 
         return count;
+    }
+
+    public void setSeparator(char separator)
+    {
+        this.separator = separator;
     }
 
     @Override

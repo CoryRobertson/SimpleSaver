@@ -14,7 +14,7 @@ class SerializerTest {
     @Test
     void saveAndLoadTestWithIntegers()
     {
-        String fileName = "nums.ser";
+        String fileName = "./saves/nums.ser";
         Assertions.assertTrue(Serializer.save(NUMS, fileName));
 
 
@@ -30,7 +30,7 @@ class SerializerTest {
     @Test
     void saveAndLoadTestWithStrings()
     {
-        String fileName = "strings.ser";
+        String fileName = "./saves/strings.ser";
         Assertions.assertTrue(Serializer.save(STRINGS,fileName));
 
         SerializableSave<String> stringsSave = Serializer.loadSave(fileName);
@@ -64,11 +64,11 @@ class SerializerTest {
     @Test
     void saveExists()
     {
-        File file = new File("nums.ser");
+        File file = new File("./saves/nums.ser");
         if(file.exists())
-            Assertions.assertTrue(Serializer.saveExists("nums.ser"));
+            Assertions.assertTrue(Serializer.saveExists("./saves/nums.ser"));
         else
-            Assertions.assertFalse(Serializer.saveExists("nums.ser"));
+            Assertions.assertFalse(Serializer.saveExists("./saves/nums.ser"));
 
     }
 
@@ -76,9 +76,9 @@ class SerializerTest {
     void READMETestUsage()
     {
         Double[] doubles = {1.1, 5.6};
-        Serializer.save(doubles, "./fileName.ser");
+        Serializer.save(doubles, "./saves/fileName.ser");
 
-        SerializableSave<Double> doubleSave = Serializer.loadSave("./fileName.ser");
+        SerializableSave<Double> doubleSave = Serializer.loadSave("./saves/fileName.ser");
         assert doubleSave != null;
         Double[] doubleData = doubleSave.getSaveData();
 
@@ -87,5 +87,28 @@ class SerializerTest {
         {
             Assertions.assertEquals(doubles[i], doubleData[i]);
         }
+    }
+
+    @Test
+    void testSaveExists()
+    {
+        File file = new File("./saves/data.ser");
+        if(file.exists())
+            Assertions.assertTrue(Serializer.saveExists());
+        else
+            Assertions.assertFalse(Serializer.saveExists());
+    }
+
+
+    @Test
+    void saveAndLoadSingleObjectTest()
+    {
+        String data = "this is a single string object";
+        Assertions.assertTrue(Serializer.save(data,"./saves/singleObject.ser"));
+
+        SerializableSave<String> singleObjectSave = Serializer.loadSave("./saves/singleObject.ser");
+        assert singleObjectSave != null;
+        Assertions.assertEquals(singleObjectSave.getSaveDataObj(),data);
+
     }
 }
