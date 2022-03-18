@@ -1,20 +1,23 @@
-plugins {
-    id 'java'
-    id 'idea'
-}
+plugins
+        {
+            id 'java'
+            id 'idea'
+        }
 
 
 group 'com.github.coryrobertson'
 version '1.0-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
+repositories
+        {
+            mavenCentral()
+        }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-}
+dependencies
+        {
+            testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+            testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+        }
 
 clean.doFirst
         {
@@ -28,6 +31,7 @@ test.doFirst
             println "Cleaning save files"
         }
 
-test {
-    useJUnitPlatform()
-}
+test
+        {
+            useJUnitPlatform()
+        }

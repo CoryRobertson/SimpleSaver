@@ -95,7 +95,6 @@ public class Serializer
             objectInputStream = new ObjectInputStream(fileInputStream);
             save = (SerializableSave<T>) objectInputStream.readObject();
 
-
             objectInputStream.close();
             fileInputStream.close();
             return save;
