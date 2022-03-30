@@ -5,19 +5,12 @@ plugins
             id 'application'
         }
 
-
 group 'com.github.coryrobertson'
 version '1.4-SNAPSHOT'
 
 repositories
         {
             mavenCentral()
-        }
-
-dependencies
-        {
-            testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
-            testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
         }
 
 clean.doFirst
@@ -57,5 +50,34 @@ task networkReceiverJar(type: Jar)
     baseName = 'ReceiverJar'
 }
 
+task networkReceiverStartScript(type: CreateStartScripts)
+{
+    outputDir = file('build/scripts/')
+    mainClass = 'com.github.coryrobertson.simplesaver.NetworkReceiver'
+    applicationName = 'StartNetworkReciever'
+    classpath = files('libs/' + networkReceiverJar.archiveFileName.get())
+}
+
+task networkSenderStartScript(type: CreateStartScripts)
+{
+    outputDir = file('build/scripts/')
+    mainClass = 'com.github.coryrobertson.simplesaver.NetworkSender'
+    applicationName = 'StartNetworkSender'
+    classpath = files('libs/' + networkSenderJar.archiveFileName.get())
+}
+
 jar.dependsOn networkSenderJar
 jar.dependsOn networkReceiverJar
+
+startScripts.dependsOn networkSenderStartScript
+startScripts.dependsOn networkReceiverStartScript
+
+dependencies
+        {
+            testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+            testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+            runtimeOnly files('build/libs/' + networkReceiverJar.archiveFileName.get())
+            runtimeOnly files('build/libs/' + networkSenderJar.archiveFileName.get())
+
+
+        }
