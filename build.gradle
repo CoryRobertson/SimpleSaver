@@ -3,6 +3,7 @@ plugins
             id 'java'
             id 'idea'
             id 'application'
+            id 'distribution'
         }
 
 group 'com.github.coryrobertson'
@@ -66,18 +67,66 @@ task networkSenderStartScript(type: CreateStartScripts)
     classpath = files('libs/' + networkSenderJar.archiveFileName.get())
 }
 
-jar.dependsOn networkSenderJar
-jar.dependsOn networkReceiverJar
+//jar.dependsOn networkSenderJar
+//jar.dependsOn networkReceiverJar
 
-startScripts.dependsOn networkSenderStartScript
-startScripts.dependsOn networkReceiverStartScript
+//startScripts.dependsOn networkSenderStartScript
+//startScripts.dependsOn networkReceiverStartScript
 
 dependencies
         {
             testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
             testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-            runtimeOnly files('build/libs/' + networkReceiverJar.archiveFileName.get())
-            runtimeOnly files('build/libs/' + networkSenderJar.archiveFileName.get())
+            //runtimeOnly files('build/libs/' + networkReceiverJar.archiveFileName.get())
+            //runtimeOnly files('build/libs/' + networkSenderJar.archiveFileName.get())
 
 
         }
+
+tasks.withType(Tar){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+tasks.withType(Zip){
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
+jar.dependsOn networkSenderJar
+jar.dependsOn networkReceiverJar
+
+distributions
+        {
+            main
+                    {
+                        contents
+                                {
+                                    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+                                    from (networkSenderStartScript) {into 'bin'}
+                                    from (networkReceiverStartScript) {into 'bin'}
+                                    from (networkReceiverJar) {into 'lib'}
+                                    from (networkSenderJar) {into 'lib'}
+                                }
+                    }
+            networkSender
+                    {
+                        distributionBaseName = 'networkSender'
+
+                        contents
+                                {
+                                    from ('build/libs/' + networkSenderJar.archiveFileName.get()) {into 'lib'}
+                                    from (networkSenderStartScript) {into 'bin'}
+
+                                }
+                    }
+            networkReceiver
+                    {
+                        distributionBaseName = 'networkReceiver'
+                        contents
+                                {
+                                    from ('build/libs/' + networkReceiverJar.archiveFileName.get()) {into 'lib'}
+                                    from (networkReceiverStartScript) {into 'bin'}
+
+                                }
+                    }
+        }
+
