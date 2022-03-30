@@ -9,7 +9,7 @@ maven { url 'https://jitpack.io' }
 ```
 and this under your dependencies
 ```gradle
-implementation 'com.github.CoryRobertson:SimpleSaver:v1.2'
+implementation 'com.github.CoryRobertson:SimpleSaver:v1.4'
 ```
 To use the simple plaintext String saver:
 ```java
