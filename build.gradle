@@ -2,6 +2,7 @@ plugins
         {
             id 'java'
             id 'idea'
+            id 'application'
         }
 
 
@@ -35,3 +36,29 @@ test
         {
             useJUnitPlatform()
         }
+
+task networkSenderJar(type: Jar)
+{
+    mainClassName = 'com.github.coryrobertson.simplesaver.NetworkSender'
+    manifest {
+        attributes 'Implementation-Title': 'Synchronizer',
+                'Main-Class': 'com.github.coryrobertson.simplesaver.NetworkSender'
+    }
+    from sourceSets.main.output
+
+    baseName = 'SenderJar'
+
+}
+
+task networkReceiverJar(type: Jar)
+{
+    mainClassName = 'com.github.coryrobertson.simplesaver.NetworkReceiver'
+    manifest {
+        attributes 'Implementation-Title': 'Synchronizer',
+                'Main-Class': 'com.github.coryrobertson.simplesaver.NetworkReceiver'
+    }
+    from sourceSets.main.output
+
+    baseName = 'ReceiverJar'
+
+}
