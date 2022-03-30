@@ -1,6 +1,7 @@
 package com.github.coryrobertson.simplesaver;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Date;
@@ -9,6 +10,7 @@ class SerializableSaveTest
 {
 
     @Test
+    @DisplayName("getSaveData")
     void getSaveData()
     {
         Integer[] ints = {5,7,9};
@@ -17,6 +19,7 @@ class SerializableSaveTest
     }
 
     @Test
+    @DisplayName("getSaveDataObj")
     void getSaveDataObj()
     {
         Integer integer = 5;
@@ -25,6 +28,7 @@ class SerializableSaveTest
     }
 
     @Test
+    @DisplayName("getDate")
     void getDate()
     {
         SerializableSave<String> serializableSave = new SerializableSave<>("this is some data to put into a save");
@@ -33,6 +37,7 @@ class SerializableSaveTest
     }
 
     @Test
+    @DisplayName("resetDate")
     void resetDate()
     {
         SerializableSave<String> serializableSave = new SerializableSave<>("this is some data to put into a save");

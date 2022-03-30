@@ -1,6 +1,7 @@
 package com.github.coryrobertson.simplesaver;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -12,6 +13,7 @@ public class SaverTest
 
 
     @Test
+    @DisplayName("saveAndLoadTest")
     void saveAndLoadTest()
     {
         SimpleSave simpleSave1 = new SimpleSave(dataToTest);
@@ -29,6 +31,7 @@ public class SaverTest
     }
 
     @Test
+    @DisplayName("READMETest")
     void READMETest()
     {
         String[] stringSave = new String[] {"123456789", "987654321"};
